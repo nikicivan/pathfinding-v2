@@ -195,7 +195,7 @@ export const GridCellShortestPathAstar = styled.div`
     margin: 0;
     box-sizing: border-box; 
     opacity: 1;
-    animation-name: ${AnimationSPAstar};            
+    animation-name: ${AnimationSPAstar};     
     animation-duration: 0s;
     animation-timing-function: ease-out;
     animation-direction: alternate;

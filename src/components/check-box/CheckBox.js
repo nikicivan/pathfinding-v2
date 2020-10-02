@@ -54,7 +54,7 @@ function PlayOption() {
 		} if (rows < 16) {
 			setTimeout(() => {
 				setOpen(false);
-			}, 3500);
+			}, 3000);
 			const interval = setInterval(() => {
 				if (endGame) {
 					return () => clearInterval(interval);
@@ -63,12 +63,12 @@ function PlayOption() {
 				dispatch(addWalls());
 				dispatch(resetVisitedAndSP());
 				dispatch(findPath());
-			}, 3500);
+			}, 3000);
 			return () => clearInterval(interval);
 		}
 		setTimeout(() => {
 			setOpen(false);
-		}, 5500);
+		}, 4500);
 		const interval = setInterval(() => {
 			if (endGame) {
 				return () => clearInterval(interval);
@@ -77,7 +77,7 @@ function PlayOption() {
 			dispatch(addWalls());
 			dispatch(resetVisitedAndSP());
 			dispatch(findPath());
-		}, 5500);
+		}, 4500);
 		return () => clearInterval(interval);
 	};
 
