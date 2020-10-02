@@ -85,8 +85,9 @@ class PlayScreen extends Component {
 		}
 	}
 
-    // Breadth First Search Algorithm
-    bfs = async (gridCells, playerPos, targetPos, markVisited, markSPBFS, findPath) => {
+	// Breadth First Search Algorithm
+	bfs = async (gridCells, playerPos, targetPos, markVisited, markSPBFS, findPath) => {
+		const { numberVisited, level, gameEnd } = this.props;
     	const t1 = new Date().getTime();
     	const { graph, cellIdPositionMap } = this.initializeGraph(gridCells);
     	const playerId = gridCells[playerPos.i][playerPos.j].id;
@@ -130,23 +131,24 @@ class PlayScreen extends Component {
     	const t2 = new Date().getTime();
     	this.t = t2 - t1;
     	const lengthBFS = JSON.parse(localStorage.getItem('visitedBFS')).length;
-    	this.props.numberVisited({
+    	numberVisited({
     		data: {
     			name: 'Breadth First Search',
     			numberCV: lengthBFS,
     			timeSpent: this.t,
-    			level: this.props.level,
+    			level,
     		},
     	});
     	localStorage.removeItem('visitedBFS');
     	if (!targetFound) {
     		this.setState({ endGame: true });
-    		this.props.gameEnd(this.state.endGame);
+    		gameEnd(this.state.endGame);
     	}
     	this.setState({ routing: false });
-    };
+	};
 
-    dijkstra = async (gridCells, playerPos, targetPos, markVisited, markSPDijkstra, findPath) => {
+	dijkstra = async (gridCells, playerPos, targetPos, markVisited, markSPDijkstra, findPath) => {
+		const { numberVisited, level, gameEnd } = this.props;
     	const t1 = new Date().getTime();
     	const { graph, cellIdPositionMap } = this.initializeGraph(gridCells);
     	const playerId = gridCells[playerPos.i][playerPos.j].id;
@@ -197,23 +199,24 @@ class PlayScreen extends Component {
     	const t2 = new Date().getTime();
     	this.t = t2 - t1;
     	const lengthDijkstra = JSON.parse(localStorage.getItem('visitedDijkstra')).length;
-    	this.props.numberVisited({
+    	numberVisited({
     		data: {
     			name: 'Dijkstra Algorithm',
     			numberCV: lengthDijkstra,
     			timeSpent: this.t,
-    			level: this.props.level,
+    			level,
     		},
     	});
     	localStorage.removeItem('visitedDijkstra');
     	if (!targetFound) {
     		this.setState({ endGame: true });
-    		this.props.gameEnd(this.state.endGame);
+    		gameEnd(this.state.endGame);
     	}
     	this.setState({ routing: false });
-    };
+	};
 
-    astar = async (gridCells, playerPos, targetPos, markVisited, markSPAstar, findPath) => {
+	astar = async (gridCells, playerPos, targetPos, markVisited, markSPAstar, findPath) => {
+		const { numberVisited, level, gameEnd } = this.props;
     	const t1 = new Date().getTime();
     	const { graph, cellIdPositionMap } = this.initializeGraph(gridCells);
     	const playerId = gridCells[playerPos.i][playerPos.j].id;
@@ -267,21 +270,21 @@ class PlayScreen extends Component {
     	const t2 = new Date().getTime();
     	this.t = t2 - t1;
     	const lengthAstar = JSON.parse(localStorage.getItem('visitedAstar')).length;
-    	this.props.numberVisited({
+    	numberVisited({
     		data: {
     			name: 'Astar Algorithm',
     			numberCV: lengthAstar,
     			timeSpent: this.t,
-    			level: this.props.level,
+    			level,
     		},
     	});
     	localStorage.removeItem('visitedAstar');
     	if (!targetFound) {
     		this.setState({ endGame: true });
-    		this.props.gameEnd(this.state.endGame);
+    		gameEnd(this.state.endGame);
     	}
     	this.setState({ routing: false });
-    };
+	};
 
     wait = microsecs => new Promise((resolve) => {
     	setTimeout(() => resolve(), microsecs);
