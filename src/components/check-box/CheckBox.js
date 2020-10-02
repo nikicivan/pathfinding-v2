@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-shadow */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { chooseCheckBox, setLevel } from '../../redux/filter/filter.actions';
@@ -19,18 +19,25 @@ function PlayOption() {
 	const [open, setOpen] = useState(false);
 	const [idCheckBox, setIdCheckBox] = useState(0);
 	const [gameLevel, setGameLevel] = useState(1);
-
 	const filter = useSelector(state => state.filter);
 	const { algorithms, endGame } = filter;
 
 	const grid = useSelector(state => state.grid);
 	const { rows } = grid;
 
+	const intervalId = useRef(null);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(setLevel(gameLevel));
 	}, [gameLevel, dispatch]);
+
+	useEffect(() => {
+		if (endGame) {
+			clearInterval(intervalId);
+			window.location.reload();
+		}
+	}, [endGame, intervalId]);
 
 	const handleLevel = () => {
 		setGameLevel(gameLevel + 1);
@@ -41,44 +48,43 @@ function PlayOption() {
 			setTimeout(() => {
 				setOpen(false);
 			}, 2000);
-			const interval = setInterval(() => {
-				if (endGame) {
-					return () => clearInterval(interval);
+			intervalId.current = setInterval(() => {
+				if (!endGame) {
+					setGameLevel(gameLevel => gameLevel + 1);
+					dispatch(addWalls());
+					dispatch(resetVisitedAndSP());
+					dispatch(findPath());
 				}
-				setGameLevel(gameLevel => gameLevel + 1);
-				dispatch(addWalls());
-				dispatch(resetVisitedAndSP());
-				dispatch(findPath());
 			}, 2000);
-			return () => clearInterval(interval);
+			clearInterval(intervalId.current);
 		} if (rows < 16) {
 			setTimeout(() => {
 				setOpen(false);
 			}, 3000);
-			const interval = setInterval(() => {
+			intervalId.current = setInterval(() => {
 				if (endGame) {
-					return () => clearInterval(interval);
+					return () => clearInterval(intervalId.current);
 				}
 				setGameLevel(gameLevel => gameLevel + 1);
 				dispatch(addWalls());
 				dispatch(resetVisitedAndSP());
 				dispatch(findPath());
 			}, 3000);
-			return () => clearInterval(interval);
+			return () => clearInterval(intervalId.current);
 		}
 		setTimeout(() => {
 			setOpen(false);
 		}, 4500);
-		const interval = setInterval(() => {
+		intervalId.current = setInterval(() => {
 			if (endGame) {
-				return () => clearInterval(interval);
+				return () => clearInterval(intervalId.current);
 			}
 			setGameLevel(gameLevel => gameLevel + 1);
 			dispatch(addWalls());
 			dispatch(resetVisitedAndSP());
 			dispatch(findPath());
 		}, 4500);
-		return () => clearInterval(interval);
+		return () => clearInterval(intervalId.current);
 	};
 
 	const playBtn = () => {
