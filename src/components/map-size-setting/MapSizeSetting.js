@@ -17,15 +17,16 @@ const MapSizeSetting = ({ setIsActive }) => {
 		e.preventDefault();
 		if (row >= 10) {
 			if (row <= 20) {
-				if (column >= 10) {
-					if (column <= 20) {
+				if (column >= 10 && column === row) {
+					if (column <= 20 && row === column) {
 						dispatch(changeRows(row));
 						dispatch(changeColumns(column));
+						setRow('');
 					} else {
-						alert('Y value must be equal or less then 20');
+						alert('Y value must be equal or less then 20 and equal with X');
 					}
 				} else {
-					alert('Y value must be equal or grather then 10');
+					alert('Y value must be equal or grather then 10 and equal with X');
 				}
 			} else {
 				alert('X value must be equal or less then 20');
@@ -39,14 +40,10 @@ const MapSizeSetting = ({ setIsActive }) => {
 		<MapSizeContainer style={{ marginRight: '1rem', marginTop: '1rem' }}>
 			<MapSizeForm onSubmit={handleMapSize}>
 				<MapSizeInput
-					onChange={e => setRow(e.target.value)}
+					onChange={(e) => { setRow(e.target.value); setColumn(e.target.value); }}
 					type="number"
-					placeholder="x value"
-				/>
-				<MapSizeInput
-					onChange={e => setColumn(e.target.value)}
-					type="number"
-					placeholder="y value"
+					placeholder="Map length"
+					value={row}
 				/>
 				<MapSizeButton className="buttonMap" type="submit" onClick={() => setIsActive(false)} variant="contained" color="primary">
 					Change
