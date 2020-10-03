@@ -23,12 +23,12 @@ const Header = () => {
 				<HeaderTitleH1>Pathfinding Visualizer</HeaderTitleH1>
 			</HeaderTitle>
 			<HeaderRight>
-				<HeaderMapSize>
-					<SettingsIcon style={{ fontSize: 'xx-large' }} onClick={toggle} />
-				</HeaderMapSize>
 				{isActive
 					? <div><MapSizeSetting setIsActive={setIsActive} /></div>
 					: <div hidden><MapSizeSetting /></div>}
+				<HeaderMapSize>
+					<SettingsIcon style={{ fontSize: 'xx-large' }} onClick={toggle} />
+				</HeaderMapSize>
 			</HeaderRight>
 		</HeaderContainer>
 	);

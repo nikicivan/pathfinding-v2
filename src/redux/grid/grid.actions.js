@@ -85,3 +85,13 @@ export const changeColumns = c => ({
 	type: GRID_TYPES.CHANGE_COLUMNS,
 	payload: c,
 });
+
+export const playerPositionChange = dataPlayer => ({
+	type: GRID_TYPES.PLAYER_POSITION,
+	payload: dataPlayer,
+});
+
+export const targetPositionChange = dataTarget => ({
+	type: GRID_TYPES.TARGET_POSITION,
+	payload: dataTarget,
+});

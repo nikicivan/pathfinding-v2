@@ -11,8 +11,7 @@ export const HeaderContainer = styled.div`
     }
 `;
 
-export const HeaderTitle = styled.div`
-    flex: 1;
+export const HeaderTitle = styled.div`    
     margin-left: 1rem;
     align-items: center;    
 `;
@@ -26,19 +25,20 @@ export const HeaderTitleH1 = styled.h1`
 export const HeaderRight = styled.div`
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     margin-right: 1rem;
+    flex: 1;
     &:hover {
         cursor: pointer;
     }
     @media (max-width: 768px) {
-        flex-direction: column;        
+        display: block;        
     }
 `;
 
 export const HeaderMapSize = styled.div`
     display: flex;
-    flex-direction: column;
     @media (max-width: 768px) {
-        flex-direction: column;        
+        display: block;        
     }
 `;

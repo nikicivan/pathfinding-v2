@@ -2,16 +2,44 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeColumns, changeRows } from '../../redux/grid/grid.actions';
 import {
-	MapSizeContainer, MapSizeInput, MapSizeButton, MapSizeForm,
+	changeColumns, changeRows, playerPositionChange, targetPositionChange,
+} from '../../redux/grid/grid.actions';
+import {
+	MapSizeContainer, MapSizeInput, MapSizeButton, MapSizeForm, MapSizeFormPlayer,
+	MapSizeFormTarget, MapSizeTargetPosButton, MapSizePlayerPosButton,
 } from './MapSize.styles';
 
 const MapSizeSetting = ({ setIsActive }) => {
-	const [row, setRow] = useState('');
-	const [column, setColumn] = useState('');
+	const [row, setRow] = useState(10);
+	const [column, setColumn] = useState(10);
+	const [playerPosI, setPlayerPosI] = useState(0);
+	const [playerPosJ, setPlayerPosJ] = useState(0);
+	const [targetPosI, setTargetPosI] = useState(0);
+	const [targetPosJ, setTargetPosJ] = useState(0);
+
+	const dataPlayer = { playerPosI, playerPosJ };
+	const dataTarget = { targetPosI, targetPosJ };
 
 	const dispatch = useDispatch();
+
+	const handlePlayerPos = (e) => {
+		e.preventDefault();
+		if (playerPosI < row || playerPosI < column) {
+			dispatch(playerPositionChange(dataPlayer));
+		} else {
+			alert('X and Y value must be inside of the map');
+		}
+	};
+
+	const handleTargetPos = (e) => {
+		e.preventDefault();
+		if (targetPosI < row || targetPosJ < column) {
+			dispatch(targetPositionChange(dataTarget));
+		} else {
+			alert('X and Y value must be inside of the map');
+		}
+	};
 
 	const handleMapSize = (e) => {
 		e.preventDefault();
@@ -21,7 +49,6 @@ const MapSizeSetting = ({ setIsActive }) => {
 					if (column <= 20 && row === column) {
 						dispatch(changeRows(row));
 						dispatch(changeColumns(column));
-						setRow('');
 					} else {
 						alert('Y value must be equal or less then 20 and equal with X');
 					}
@@ -38,14 +65,55 @@ const MapSizeSetting = ({ setIsActive }) => {
 
 	return (
 		<MapSizeContainer style={{ marginRight: '1rem', marginTop: '1rem' }}>
+			<MapSizeFormPlayer onSubmit={handlePlayerPos}>
+				<MapSizeInput
+					onChange={(e) => {
+						setPlayerPosI(Number(e.target.value));
+					}}
+					type="number"
+					placeholder="Player Position X-value"
+					value={playerPosI}
+				/>
+				<MapSizeInput
+					onChange={(e) => {
+						setPlayerPosJ(Number(e.target.value));
+					}}
+					type="number"
+					placeholder="Player Position Y-value"
+					value={playerPosJ}
+				/>
+				<MapSizePlayerPosButton type="submit" onClick={() => setIsActive(false)}>Change</MapSizePlayerPosButton>
+			</MapSizeFormPlayer>
+			<MapSizeFormTarget onSubmit={handleTargetPos}>
+				<MapSizeInput
+					onChange={(e) => {
+						setTargetPosI(Number(e.target.value));
+					}}
+					type="number"
+					placeholder="Target Position X-value"
+					value={targetPosI}
+				/>
+				<MapSizeInput
+					onChange={(e) => {
+						setTargetPosJ(Number(e.target.value));
+					}}
+					type="number"
+					placeholder="Target Position Y-value"
+					value={targetPosJ}
+				/>
+				<MapSizeTargetPosButton type="submit" onClick={() => setIsActive(false)}>Change</MapSizeTargetPosButton>
+			</MapSizeFormTarget>
 			<MapSizeForm onSubmit={handleMapSize}>
 				<MapSizeInput
-					onChange={(e) => { setRow(e.target.value); setColumn(e.target.value); }}
+					onChange={(e) => {
+						setRow(e.target.value);
+						setColumn(e.target.value);
+					}}
 					type="number"
 					placeholder="Map length"
 					value={row}
 				/>
-				<MapSizeButton className="buttonMap" type="submit" onClick={() => setIsActive(false)} variant="contained" color="primary">
+				<MapSizeButton className="buttonMap" type="submit" onClick={() => setIsActive(false)}>
 					Change
 				</MapSizeButton>
 			</MapSizeForm>

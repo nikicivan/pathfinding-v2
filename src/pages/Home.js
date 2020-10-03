@@ -9,13 +9,15 @@ import { createGrid } from '../redux/grid/grid.actions';
 
 function Home() {
 	const grid = useSelector(state => state.grid);
-	const { columns, rows } = grid;
+	const {
+		columns, rows, playerPos, targetPos,
+	} = grid;
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(createGrid());
-	}, [rows, columns, dispatch]);
+	}, [rows, columns, playerPos, targetPos, dispatch]);
 
 	return (
 		<HomeContainer>

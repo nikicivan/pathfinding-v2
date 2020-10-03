@@ -137,13 +137,27 @@ const gridReducer = (state = INITIAL_STATE, action) => {
 		return {
 			...state,
 			rows: action.payload,
-			targetPos: { i: action.payload - 1, j: 4 },
 		};
 	case GRID_TYPES.CHANGE_COLUMNS:
 		return {
 			...state,
 			columns: action.payload,
-			playerPos: { i: 0, j: Math.round(action.payload / 2) },
+		};
+	case GRID_TYPES.PLAYER_POSITION:
+		return {
+			...state,
+			playerPos: {
+				i: action.payload.playerPosI,
+				j: action.payload.playerPosJ,
+			},
+		};
+	case GRID_TYPES.TARGET_POSITION:
+		return {
+			...state,
+			targetPos: {
+				i: action.payload.targetPosI,
+				j: action.payload.targetPosJ,
+			},
 		};
 	default:
 		return state;
