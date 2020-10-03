@@ -13,10 +13,10 @@ import {
 const MapSizeSetting = ({ setIsActive }) => {
 	const [row, setRow] = useState(10);
 	const [column, setColumn] = useState(10);
-	const [playerPosI, setPlayerPosI] = useState(0);
-	const [playerPosJ, setPlayerPosJ] = useState(0);
-	const [targetPosI, setTargetPosI] = useState(0);
-	const [targetPosJ, setTargetPosJ] = useState(0);
+	const [playerPosI, setPlayerPosI] = useState('');
+	const [playerPosJ, setPlayerPosJ] = useState('');
+	const [targetPosI, setTargetPosI] = useState('');
+	const [targetPosJ, setTargetPosJ] = useState('');
 
 	const dataPlayer = { playerPosI, playerPosJ };
 	const dataTarget = { targetPosI, targetPosJ };
@@ -27,6 +27,8 @@ const MapSizeSetting = ({ setIsActive }) => {
 		e.preventDefault();
 		if (playerPosI < row || playerPosI < column) {
 			dispatch(playerPositionChange(dataPlayer));
+			setPlayerPosI('');
+			setPlayerPosJ('');
 		} else {
 			alert('X and Y value must be inside of the map');
 		}
@@ -36,6 +38,8 @@ const MapSizeSetting = ({ setIsActive }) => {
 		e.preventDefault();
 		if (targetPosI < row || targetPosJ < column) {
 			dispatch(targetPositionChange(dataTarget));
+			setTargetPosI('');
+			setTargetPosJ('');
 		} else {
 			alert('X and Y value must be inside of the map');
 		}
@@ -104,6 +108,7 @@ const MapSizeSetting = ({ setIsActive }) => {
 				<MapSizeTargetPosButton type="submit" onClick={() => setIsActive(false)}>Change</MapSizeTargetPosButton>
 			</MapSizeFormTarget>
 			<MapSizeForm onSubmit={handleMapSize}>
+				<p>Map Length</p>
 				<MapSizeInput
 					onChange={(e) => {
 						setRow(e.target.value);

@@ -2,13 +2,12 @@ import styled, { css } from 'styled-components';
 
 export const PlayScreenContainer = styled.div`
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     flex: 0.5;   
-    // max-width: 50rem;
+    max-width: 50rem;
     flex-direction: column;  
     @media (max-width: 768px) {
-        max-width: 23rem;
-        margin: 0.5rem;
+        width: 23rem !important;
     }  
 `;
 
