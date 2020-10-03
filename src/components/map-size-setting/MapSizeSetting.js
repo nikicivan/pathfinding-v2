@@ -8,8 +8,8 @@ import {
 } from './MapSize.styles';
 
 const MapSizeSetting = ({ setIsActive }) => {
-	const [row, setRow] = useState(10);
-	const [column, setColumn] = useState(10);
+	const [row, setRow] = useState('');
+	const [column, setColumn] = useState('');
 
 	const dispatch = useDispatch();
 

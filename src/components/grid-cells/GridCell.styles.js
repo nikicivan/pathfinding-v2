@@ -15,8 +15,8 @@ const GridCellContainer = css`
     -moz-background-clip: padding-box;
     cursor: pointer;    
     @media (max-width: 768px) {
-        width: 1.8rem;
-        height: 1.8rem
+        width: 1.1rem;
+        height: 1.1rem
     }
 `;
 
@@ -89,8 +89,8 @@ export const GridCellShortestPathDFS = styled.div`
     animation-fill-mode: forwards;
     animation-play-state: running;
     @media (max-width: 768px) {
-        width: 1.8rem;
-        height: 1.8rem
+        width: 1.1rem;
+        height: 1.1rem
     }
 `;
 
@@ -127,8 +127,8 @@ export const GridCellShortestPathBFS = styled.div`
     animation-fill-mode: forwards;
     animation-play-state: running;
     @media (max-width: 768px) {
-        width: 1.8rem;
-        height: 1.8rem
+        width: 1.1rem;
+        height: 1.1rem
     }
 `;
 
@@ -165,8 +165,8 @@ export const GridCellShortestPathDijkstra = styled.div`
     animation-fill-mode: forwards;
     animation-play-state: running;
     @media (max-width: 768px) {
-        width: 1.8rem;
-        height: 1.8rem
+        width: 1.1rem;
+        height: 1.1rem
     }
 `;
 
@@ -203,7 +203,7 @@ export const GridCellShortestPathAstar = styled.div`
     animation-fill-mode: forwards;
     animation-play-state: running;
     @media (max-width: 768px) {
-        width: 1.8rem;
-        height: 1.8rem
+        width: 1.1rem;
+        height: 1.1rem
     }
 `;
