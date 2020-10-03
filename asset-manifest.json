@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/pathfinding-v2/static/js/main.cf986cc3.chunk.js",
-    "main.js.map": "/pathfinding-v2/static/js/main.cf986cc3.chunk.js.map",
+    "main.js": "/pathfinding-v2/static/js/main.5216dadc.chunk.js",
+    "main.js.map": "/pathfinding-v2/static/js/main.5216dadc.chunk.js.map",
     "runtime-main.js": "/pathfinding-v2/static/js/runtime-main.36a6c942.js",
     "runtime-main.js.map": "/pathfinding-v2/static/js/runtime-main.36a6c942.js.map",
     "static/js/2.7a49e812.chunk.js": "/pathfinding-v2/static/js/2.7a49e812.chunk.js",
     "static/js/2.7a49e812.chunk.js.map": "/pathfinding-v2/static/js/2.7a49e812.chunk.js.map",
     "index.html": "/pathfinding-v2/index.html",
-    "precache-manifest.52c75630637d4e1ea18ade14be2cd504.js": "/pathfinding-v2/precache-manifest.52c75630637d4e1ea18ade14be2cd504.js",
+    "precache-manifest.74a245bcbcbfe2ddaf23ab14eb04df6c.js": "/pathfinding-v2/precache-manifest.74a245bcbcbfe2ddaf23ab14eb04df6c.js",
     "service-worker.js": "/pathfinding-v2/service-worker.js",
     "static/js/2.7a49e812.chunk.js.LICENSE.txt": "/pathfinding-v2/static/js/2.7a49e812.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.36a6c942.js",
     "static/js/2.7a49e812.chunk.js",
-    "static/js/main.cf986cc3.chunk.js"
+    "static/js/main.5216dadc.chunk.js"
   ]
 }
